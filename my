@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Sharer</title>
+</head>
+<body>
+
+    <div id="content">
+        <h1>Shared URL</h1>
+        <p id="sharedUrl">No URL shared yet.</p>
+    </div>
+
+    <script>
+        // URLのハッシュが変更されたときの処理
+        window.addEventListener('hashchange', function() {
+            // ハッシュからURLを取得し、表示を変更
+            showSharedUrl();
+        });
+
+        // 初回表示時もURLを表示
+        showSharedUrl();
+
+        function showSharedUrl() {
+            // URLのハッシュを取得
+            var hash = window.location.hash;
+
+            // ハッシュに基づいてURLを表示
+            var sharedUrlElement = document.getElementById('sharedUrl');
+            if (hash) {
+                // ハッシュからURLを取得
+                var url = hash.substring(1); // 先頭の#を除外
+                sharedUrlElement.innerHTML = 'Shared URL: <a href="' + url + '" target="_blank">' + url + '</a>';
+            } else {
+                sharedUrlElement.innerHTML = 'No URL shared yet.';
+            }
+        }
+    </script>
+
+</body>
+</html>
